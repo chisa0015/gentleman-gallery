@@ -119,6 +119,35 @@ Gentleman Gallery/
 
 ---
 
+## 参考与致谢
+
+这个项目的几个关键思路来自下面这些仓库和项目，特此标注：
+
+### 直接借鉴实现方案
+
+| 项目 | 地址 | 借鉴了什么 |
+|---|---|---|
+| **koishi-plugin-twitter-fetcher** | [WhiteBr1ck/koishi-plugin-twitter-fetcher](https://github.com/WhiteBr1ck/koishi-plugin-twitter-fetcher) | X/Twitter 推文抓取的思路：**auth_token cookie + 真浏览器**（Puppeteer）而不是裸 HTTP 请求。NSFW 推文第三方 API 一律 404 的问题就是靠这个思路定位的，`XBrowser.cs` 的 WebView2 方案由此而来 |
+| **dsh-video-downloader** | [Raymond-Hear/dsh-video-downloader](https://github.com/Raymond-Hear/dsh-video-downloader) | 视频解析下载走 **yt-dlp** 而不是手写解析。原本自己写 X 视频正则，覆盖面和稳定性都差很多，换成 yt-dlp 后支持 1000+ 站点 |
+
+### 依赖的开源库 / 工具
+
+| 项目 | 地址 | 用途 |
+|---|---|---|
+| **yt-dlp** | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | 视频/音频/字幕下载（YouTube、B站、X、TikTok 等 1000+ 站点） |
+| **cpp-httplib** | [yhirose/cpp-httplib](https://github.com/yhirose/cpp-httplib) | `engine-cpp/` 里的 HTTP 服务端（单头文件 C++ 库） |
+| **WebView2** | [MicrosoftEdge/WebView2Samples](https://github.com/MicrosoftEdge/WebView2Samples) | WinForms 内嵌 Chromium，用于 Google Lens 反查 + X 登录态抓取 |
+| **ffmpeg** | [FFmpeg/FFmpeg](https://github.com/FFmpeg/FFmpeg) | 视频转码 / 截图（暂用官方 GPL 版 170 MB） |
+
+### 参考过但没直接用
+
+| 项目 | 说明 |
+|---|---|
+| Node.js SEA（Single Executable Applications） | `legacy-node/` 的打包方式，把 `.cjs` 注入 `node.exe` 成单文件 |
+| postject | SEA blob 注入工具，`npx postject` |
+
+---
+
 ## License
 
 MIT
